@@ -1,6 +1,22 @@
 .RepositorioItem {
-    height: 60px;
+    height: 100px;
     width: 285px;
     margin-top:15px;
     background-color: cadetblue;
+    display: flex;
+    padding: 10px;
+}
+
+img {
+    height: 100%;
+    border-radius: 50%;
+}
+h1 {
+    margin: 0;
+    color: aliceblue
+}
+p {
+    font-size: 14px;
+    margin: 0;
+    color: aliceblue
 }

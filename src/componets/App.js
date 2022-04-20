@@ -1,12 +1,22 @@
 import { useState } from 'react';
-import './App.css';
 import RepositorioItem from './RepositorioItem';
+import api from '../services/api'
 
+
+import './App.css';
 function App() {
   const [pesquisa, setPesquisa] = useState('');
- 
-  function buscarRepositorios() {
-    alert(pesquisa)
+  const [repoData, setRepoData] = useState(null);
+  
+  async function buscarRepositorios() {
+    //https://api.github.com/repos/facebook/react
+    
+    const reponse = await api.get(`repos/${pesquisa}`)
+      .catch(()=>{
+          alert("Repositório não encontrado!")
+      })
+    setRepoData(reponse.data);
+    //reponse.data.description
   }
 
   return (
@@ -23,8 +33,9 @@ function App() {
           Pesquisar
         </button>
       </div>
-      <RepositorioItem/>
-      <RepositorioItem repoNome="Face Book"/>
+      { repoData &&
+        <RepositorioItem data={repoData} />
+      }
     </div>
   );
 }
